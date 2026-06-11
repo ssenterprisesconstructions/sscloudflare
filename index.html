@@ -3,6 +3,253 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SS Enterprises Constructions — Premium construction company in Dodamarga & Goa. Bungalows, apartments, civil engineering, surveying & building materials.">
+<title>SS Enterprises Constructions | Engineers & Contractors</title>
+<base href="/">
+<!-- reCAPTCHA removed for static deployment (no backend) -->
+<link rel="shortcut icon" href="/static/img/ss-enterprises-constructions-logo.jpg" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/fonts/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/static/css/nivo-lightbox/nivo-lightbox.css">
+<link rel="stylesheet" type="text/css" href="/static/css/nivo-lightbox/default.css">
+<style>
+/* ═══════════ DESIGN SYSTEM ═══════════ */
+:root{
+  --navy:    #0B2C6E;
+  --navy2:   #0D3580;
+  --blue:    #1A56C4;
+  --blue-lt: #2E6FE0;
+  --sky:     #E8F0FC;
+  --sky2:    #F0F5FF;
+  --gold:    #F5A623;
+  --gold-dk: #D48C10;
+  --white:   #FFFFFF;
+  --gray:    #F7F8FA;
+  --smoke:   #6B7280;
+  --text:    #1E293B;
+  --border:  rgba(11,44,110,0.1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--sky);}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:4px;}
+
+/* ═══════════ LOADER ═══════════ */
+#loader{
+  position:fixed;inset:0;z-index:99999;
+  background:var(--navy);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
+  transition:opacity .7s ease,visibility .7s ease;
+}
+#loader.hide{opacity:0;visibility:hidden;pointer-events:none;}
+.ld-logo{width:90px;height:90px;object-fit:contain;animation:ldBob 1.2s ease infinite alternate;}
+.ld-name{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:6px;color:var(--white);}
+.ld-name span{color:var(--gold);}
+.ld-bar{width:160px;height:3px;background:rgba(255,255,255,.15);border-radius:3px;overflow:hidden;}
+.ld-fill{height:100%;background:linear-gradient(to right,var(--gold),var(--blue-lt));width:0;animation:ldFill 1.6s ease forwards;border-radius:3px;}
+@keyframes ldBob{from{transform:translateY(-6px)}to{transform:translateY(6px)}}
+@keyframes ldFill{to{width:100%}}
+
+/* ═══════════ MOBILE NAV OVERLAY ═══════════ */
+.mob-nav{
+  position:fixed;inset:0;z-index:9998;
+  background:var(--navy);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+  opacity:0;visibility:hidden;transition:.4s ease;
+}
+.mob-nav.open{opacity:1;visibility:visible;}
+.mob-nav a{
+  font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:4px;
+  color:rgba(255,255,255,.6);transition:color .3s;
+}
+.mob-nav a:hover{color:var(--gold);}
+.mob-close{position:absolute;top:24px;right:28px;color:rgba(255,255,255,.4);font-size:26px;cursor:pointer;transition:color .3s;}
+.mob-close:hover{color:var(--gold);}
+
+/* ═══════════ NAVBAR ═══════════ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 60px;
+  background:rgba(255,255,255,0.0);
+  transition:background .4s,padding .4s,box-shadow .4s;
+}
+.nav.stuck{
+  background:#113063; /* brand blue when scrolled */
+  padding:12px 60px;
+  box-shadow:0 2px 30px rgba(11,44,110,.15);
+}
+/* Logo area */
+.nav-logo{display:flex;align-items:center;gap:12px;}
+.nav-logo img{
+  height:52px;width:52px;object-fit:contain;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.3));
+  transition:height .4s;
+}
+.nav.stuck .nav-logo img{height:42px;width:42px;}
+.nav-logo-text strong{
+  font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;
+  color:var(--white);display:block;line-height:1.1;
+  transition:color .4s;
+}
+.nav.stuck .nav-logo-text strong{color:var(--white);} 
+.nav-logo-text span{
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;font-weight:300;
+  color:rgba(255,255,255,.6);
+  transition:color .4s;
+}
+.nav.stuck .nav-logo-text span{color:rgba(255,255,255,.75);} 
+
+/* Links */
+.nav-links{display:flex;align-items:center;gap:8px;list-style:none;}
+.nav-links a{
+  font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;
+  color:rgba(255,255,255,.75);padding:8px 14px;
+  border-radius:4px;transition:color .3s,background .3s;
+}
+.nav.stuck .nav-links a{color:var(--white);}
+.nav-links a:hover{color:var(--gold) !important;background:rgba(245,166,35,.08);}
+.nav-links .ncta{
+  background:var(--gold);color:var(--navy) !important;
+  font-weight:700;padding:10px 24px;border-radius:4px;
+  transition:background .3s,transform .2s !important;
+}
+.nav-links .ncta:hover{background:#E8950D;transform:translateY(-2px);}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.burger span{width:26px;height:2px;background:var(--white);border-radius:2px;transition:.3s;}
+.nav.stuck .burger span{background:var(--white);}
+
+/* ═══════════ HERO ═══════════ */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    linear-gradient(120deg, rgba(11,44,110,.92) 0%, rgba(11,44,110,.75) 45%, rgba(11,44,110,.4) 100%),
+    url("static/img/portfolio/new_bungalow_ssenterprisesconstructions.jpg") center/cover no-repeat;
+}
+/* animated subtle overlay */
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom, transparent 60%, rgba(11,44,110,.6) 100%);
+}
+/* geometric accent */
+.hero-shape{
+  position:absolute;right:0;top:0;bottom:0;width:45%;
+  background:rgba(255,255,255,0.04);
+  clip-path:polygon(15% 0,100% 0,100% 100%,0 100%);
+  pointer-events:none;
+}
+.hero-content{
+  position:relative;z-index:2;
+  padding:140px 60px 80px;
+  max-width:700px;
+}
+
+@media(min-width:1100px){
+  /* Reserve extra space at the bottom of hero so buttons don't collide with stats */
+  .hero-content{ padding-bottom:360px; }
+  .hero-stats{ bottom:48px; }
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(245,166,35,.15);border:1px solid rgba(245,166,35,.4);
+  color:var(--gold);
+  font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;
+  padding:8px 18px;border-radius:30px;
+  margin-bottom:28px;
+  opacity:0;animation:fadeUp .7s .2s ease forwards;
+}
+.hero-badge i{font-size:10px;}
+.hero-h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(48px,6.5vw,88px);
+  font-weight:700;line-height:.95;
+  color:var(--white);
+  margin-bottom:24px;
+  opacity:0;animation:fadeUp .8s .35s ease forwards;
+}
+.hero-h1 em{font-style:italic;color:var(--gold);}
+.hero-sub{
+  font-size:16px;font-weight:300;color:rgba(255,255,255,.65);
+  line-height:1.8;max-width:520px;
+  margin-bottom:44px;
+  opacity:0;animation:fadeUp .8s .5s ease forwards;
+}
+.hero-btns{
+  display:flex;gap:16px;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .8s .65s ease forwards;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--gold);color:var(--navy);
+  font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:15px 34px;border-radius:4px;border:none;cursor:pointer;
+  transition:background .3s,transform .25s,box-shadow .3s;
+  box-shadow:0 4px 20px rgba(245,166,35,.4);
+}
+.btn-primary:hover{background:#E8950D;transform:translateY(-3px);box-shadow:0 8px 28px rgba(245,166,35,.5);} 
+[...trimmed for brevity...]
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <img class="ld-logo" src="static/img/ss-enterprises-constructions-logo-svg.svg" alt="SS Enterprises Logo">
+  <div class="ld-name">SS <span>Enterprises</span></div>
+  <div class="ld-bar"><div class="ld-fill"></div></div>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="mob-nav" id="mobNav">
+  <i class="fa fa-times mob-close" id="mobClose"></i>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#portfolio">Projects</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ── NAVBAR ── -->
+<nav class="nav" id="navbar">
+  <a href="#top" class="nav-logo">
+    <img src="static/img/ss-enterprises-constructions-logo-svg.svg" alt="SS Enterprises logo">
+    <div class="nav-logo-text">
+      <strong>SS Enterprises</strong>
+      <span>Engineers &amp; Contractors</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Projects</a></li>
+    <li><a href="#contact" class="ncta">Get Estimate</a></li>
+  </ul>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+[...trimmed body content identical to new-page/index.html...]
+
+<!-- ─── SCRIPTS ─── -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="/static/js/jquery.1.11.1.js"></script>
+<script type="text/javascript" src="/static/js/nivo-lightbox.js"></script>
+<script src="/static/js/new-page-inline.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="SS Enterprises - Construction services in Dodamarg, Goa, and Kolhapur. Residential and commercial building construction, surveys, and building material supply.">
 <meta name="keywords" content="construction Dodamarg, construction Goa, construction Kolhapur, bungalow construction, building contractor, surveyor, construction materials">
 <link rel="canonical" href="https://ssenterprisesconstructions.in/">
