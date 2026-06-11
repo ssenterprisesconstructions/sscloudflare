@@ -79,30 +79,37 @@
     });
   }
 
-  // Form submit handler (ensure we prevent POST and navigate to WhatsApp)
+  // Form submit handler (removed inline onsubmit)
   (function(){
-    var form = document.querySelector('.form-panel form') || document.querySelector('form[method]') || document.querySelector('form');
+    var form = document.querySelector('form[method="POST"]');
     if(form){
       form.addEventListener('submit', function(e){
-        e.preventDefault();
-        try{
-          var name = (document.querySelector('input[name="cname"]')||{value:''}).value.trim();
-          var phone = (document.querySelector('input[name="cnum"]')||{value:''}).value.trim();
-          var msg = (document.querySelector('textarea[name="cmsg"]')||{value:''}).value.trim();
-          var lines = [];
-          if(name) lines.push('Name: ' + name);
-          if(phone) lines.push('Phone: ' + phone);
-          if(msg) lines.push('Message: ' + msg);
-          var text = lines.join('\n');
-          var company = '+919423313016';
-          var url = 'https://api.whatsapp.com/send?phone=' + encodeURIComponent(company) + '&text=' + encodeURIComponent(text || 'Hello, I would like to enquire about your services.');
-          // Navigate in the same tab to avoid popup blocking and ensure user sees WhatsApp
-          window.location.href = url;
-        }catch(err){
-          alert('Unable to open WhatsApp. Please contact via email or phone.');
-        }
+        if(!validateForm()){ e.preventDefault(); }
       });
     }
   })();
+
+  // validateForm: instead of POSTing, open WhatsApp with prefilled message and prevent submission
+  window.validateForm = function(){
+    try{
+      var name = (document.querySelector('input[name="cname"]')||{value:''}).value.trim();
+      var phone = (document.querySelector('input[name="cnum"]')||{value:''}).value.trim();
+      var msg = (document.querySelector('textarea[name="cmsg"]')||{value:''}).value.trim();
+      var lines = [];
+      if(name) lines.push('Name: ' + name);
+      if(phone) lines.push('Phone: ' + phone);
+      if(msg) lines.push('Message: ' + msg);
+      var text = lines.join('\n');
+      // Company WhatsApp number (international format without leading zeros/spaces)
+      var company = '+919423313016';
+      var url = 'https://api.whatsapp.com/send?phone=' + encodeURIComponent(company) + '&text=' + encodeURIComponent(text || 'Hello, I would like to enquire about your services.');
+      window.open(url, '_blank');
+    }catch(e){
+      // fallback: show a message
+      alert('Unable to open WhatsApp. Please contact via email or phone.');
+    }
+    // prevent actual form submission on static site
+    return false;
+  };
 
 })();
