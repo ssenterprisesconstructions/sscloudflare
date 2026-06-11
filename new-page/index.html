@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="SS Enterprises Constructions — Premium construction company in Dodamarga & Goa. Bungalows, apartments, civil engineering, surveying & building materials.">
 <title>SS Enterprises Constructions | Engineers & Contractors</title>
+<base href="/">
 <!-- reCAPTCHA removed for static deployment (no backend) -->
 <link rel="shortcut icon" href="/static/img/ss-enterprises-constructions-logo.jpg" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -634,10 +635,10 @@ footer{background:var(--navy);padding:64px 60px 28px;}
 <!-- MOBILE NAV -->
 <div class="mob-nav" id="mobNav">
   <i class="fa fa-times mob-close" id="mobClose"></i>
-  <a href="#about" onclick="closeMob()">About</a>
-  <a href="#services" onclick="closeMob()">Services</a>
-  <a href="#portfolio" onclick="closeMob()">Projects</a>
-  <a href="#contact" onclick="closeMob()">Contact</a>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#portfolio">Projects</a>
+  <a href="#contact">Contact</a>
 </div>
 
 <!-- ── NAVBAR ── -->
@@ -1042,18 +1043,7 @@ footer{background:var(--navy);padding:64px 60px 28px;}
      CONTACT
 ══════════════════════════════ -->
 <section class="sec contact" id="contact">
-  <!-- Replace server-side template with client-side handling of ?scroll=param -->
-  <script>
-    (function(){
-      var params = new URLSearchParams(window.location.search);
-      var s = params.get('scroll');
-      if (s) {
-        try { s = decodeURIComponent(s); } catch(e) {}
-        // set the hash to the requested anchor
-        document.location.hash = '#' + s;
-      }
-    })();
-  </script>
+  <!-- Replace server-side template with client-side handling of ?scroll=param (moved to /static/js/new-page-inline.js) -->
   <div class="wrap">
     <div class="contact-grid">
 
@@ -1114,7 +1104,7 @@ footer{background:var(--navy);padding:64px 60px 28px;}
       <div class="rv-r">
         <div class="form-panel">
           <h3>Send Us a Message</h3>
-          <form method="POST" onsubmit="return validateForm()">
+          <form method="POST">
             <input type="text" name="email_confirm" style="display:none">
             <div class="cf-row">
               <div class="cf-g">
@@ -1123,9 +1113,7 @@ footer{background:var(--navy);padding:64px 60px 28px;}
               </div>
               <div class="cf-g">
                 <label>Contact Number</label>
-                <input type="text"
-                  oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*?)\..*/g,'$1');"
-                  placeholder="9876543210" required name="cnum" maxlength="11">
+                <input type="text" placeholder="9876543210" required name="cnum" maxlength="11">
               </div>
             </div>
             <div class="cf-g">
@@ -1189,66 +1177,6 @@ footer{background:var(--navy);padding:64px 60px 28px;}
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="/static/js/jquery.1.11.1.js"></script>
 <script type="text/javascript" src="/static/js/nivo-lightbox.js"></script>
-<script>
-// LOADER
-window.addEventListener('load',function(){
-  setTimeout(function(){document.getElementById('loader').classList.add('hide');},1800);
-});
-
-// NAVBAR SCROLL
-window.addEventListener('scroll',function(){
-  document.getElementById('navbar').classList.toggle('stuck',window.scrollY>70);
-});
-
-// MOBILE NAV
-document.getElementById('burger').addEventListener('click',function(){
-  document.getElementById('mobNav').classList.add('open');
-});
-document.getElementById('mobClose').addEventListener('click',closeMob);
-function closeMob(){document.getElementById('mobNav').classList.remove('open');}
-
-// SMOOTH SCROLL
-document.querySelectorAll('a[href^="#"]').forEach(function(a){
-  a.addEventListener('click',function(e){
-    var t=document.querySelector(this.getAttribute('href'));
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
-  });
-});
-
-// LIGHTBOX
-$(document).ready(function(){$('a[data-lightbox-gallery]').nivoLightbox();});
-
-// SLIDESHOW
-var si=0;
-function showSlides(){
-  var s=document.querySelectorAll('.mySlides'),d=document.querySelectorAll('.dot');
-  s.forEach(function(x){x.style.display='none';});
-  si++;if(si>s.length)si=1;
-  d.forEach(function(x){x.classList.remove('on');});
-  s[si-1].style.display='block';
-  d[si-1].classList.add('on');
-  setTimeout(showSlides,4500);
-}
-showSlides();
-
-// SCROLL REVEAL
-var io=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});
-},{threshold:0.1});
-document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(function(el){io.observe(el);});
-
-// RECAPTCHA
-function validateForm(){
-  // reCAPTCHA is not enabled on this static page. Prevent submission and advise contact options.
-  if(typeof grecaptcha==='undefined' || typeof grecaptcha.getResponse!=='function'){
-    alert('reCAPTCHA is not available — this is a static site and messages are not sent. Please contact via email or phone.');
-    return false;
-  }
-  try{
-    if(grecaptcha.getResponse().length===0){alert('Please complete the reCAPTCHA.');return false;}
-  }catch(e){return false;}
-  return true;
-}
-</script>
+<script src="/static/js/new-page-inline.js"></script>
 </body>
 </html>
