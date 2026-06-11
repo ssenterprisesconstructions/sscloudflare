@@ -196,8 +196,439 @@ a{text-decoration:none;color:inherit;}
   transition:background .3s,transform .25s,box-shadow .3s;
   box-shadow:0 4px 20px rgba(245,166,35,.4);
 }
-.btn-primary:hover{background:#E8950D;transform:translateY(-3px);box-shadow:0 8px 28px rgba(245,166,35,.5);} 
-[...trimmed for brevity...]
+.btn-primary:hover{background:#E8950D;transform:translateY(-3px);box-shadow:0 8px 28px rgba(245,166,35,.5);}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:10px;
+  border:2px solid rgba(255,255,255,.4);color:var(--white);
+  font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  padding:15px 34px;border-radius:4px;background:transparent;cursor:pointer;
+  transition:border-color .3s,background .3s,transform .25s;
+}
+.btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,.1);transform:translateY(-3px);}
+
+/* hero stat cards */
+.hero-stats{
+  position:absolute;bottom:48px;left:60px;right:60px;z-index:2;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  max-width:680px;
+  opacity:0;animation:fadeUp .8s .85s ease forwards;
+}
+.hs-card{
+  background:rgba(255,255,255,.1);
+  backdrop-filter:blur(12px);
+  padding:20px 28px;
+  border-top:3px solid var(--gold);
+}
+.hs-num{
+  font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--gold);line-height:1;
+}
+.hs-lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:4px;}
+
+.hero-scroll{
+  position:absolute;right:48px;bottom:48px;z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;animation:fadeUp .8s 1s ease forwards;
+}
+.hs-line{width:1px;height:56px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease infinite;}
+.hs-txt{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.35);}
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.4)}50%{opacity:1;transform:scaleY(1)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══════════ MARQUEE ═══════════ */
+.marquee{background:var(--navy);padding:14px 0;overflow:hidden;}
+.m-track{display:flex;width:max-content;animation:marquee 24s linear infinite;}
+.m-item{
+  display:flex;align-items:center;gap:16px;
+  padding:0 32px;
+  font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:3px;
+  color:rgba(255,255,255,.55);white-space:nowrap;
+}
+.m-item i{color:var(--gold);font-size:8px;}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ═══════════ SECTIONS ═══════════ */
+.sec{padding:100px 0;}
+.wrap{max-width:1220px;margin:0 auto;padding:0 60px;}
+.sec-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;
+  color:var(--blue);margin-bottom:12px;
+}
+.sec-tag::before{content:'';width:24px;height:2px;background:var(--gold);border-radius:2px;}
+.sec-h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(34px,4vw,56px);font-weight:700;line-height:1.1;
+  color:var(--navy);
+}
+.sec-h2 em{font-style:italic;color:var(--blue);}
+.sec-p{font-size:15px;font-weight:300;color:var(--smoke);line-height:1.9;margin-top:14px;}
+
+/* ═══════════ ABOUT ═══════════ */
+.about{background:var(--sky2);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+
+.about-vis{position:relative;padding-bottom:40px;padding-right:40px;}
+.about-main{
+  width:100%;aspect-ratio:4/5;object-fit:cover;
+  border-radius:8px;
+  box-shadow:24px 24px 0 var(--gold);
+}
+.about-accent{
+  position:absolute;bottom:0;right:0;
+  width:46%;aspect-ratio:1;object-fit:cover;
+  border-radius:6px;
+  border:5px solid var(--white);
+  box-shadow:0 8px 32px rgba(11,44,110,.18);
+}
+.about-badge{
+  position:absolute;top:32px;left:-28px;
+  background:var(--navy);
+  width:100px;height:100px;border-radius:8px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(11,44,110,.3);
+}
+.ab-num{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--gold);line-height:1;}
+.ab-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:2px;text-align:center;}
+
+.about-body{padding-left:10px;}
+.about-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:19px;font-style:italic;font-weight:400;
+  color:var(--smoke);line-height:1.7;
+  border-left:4px solid var(--gold);padding-left:18px;
+  margin:24px 0 28px;
+}
+.ab-checks{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;margin-top:24px;}
+.ab-chk{
+  display:flex;align-items:center;gap:9px;
+  font-size:13px;font-weight:500;color:var(--text);
+}
+.ab-chk i{color:var(--blue);font-size:13px;flex-shrink:0;}
+.about-cta{margin-top:36px;}
+
+/* ═══════════ SERVICES ═══════════ */
+.services{background:var(--navy);}
+.services .sec-tag{color:var(--gold);}
+.services .sec-tag::before{background:var(--gold);}
+.services .sec-h2{color:var(--white);}
+.svc-intro{max-width:500px;font-size:15px;color:rgba(255,255,255,.45);line-height:1.8;margin-top:12px;}
+
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px;}
+.svc-card{
+  background:var(--navy2);border-radius:10px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.06);
+  transition:transform .35s,box-shadow .35s,border-color .35s;
+  cursor:pointer;
+}
+.svc-card:hover{transform:translateY(-10px);box-shadow:0 24px 48px rgba(0,0,0,.35);border-color:rgba(245,166,35,.3);}
+.svc-img{width:100%;height:200px;object-fit:cover;filter:brightness(.7);transition:filter .4s,transform .5s;}
+.svc-card:hover .svc-img{filter:brightness(.5);transform:scale(1.05);}
+.svc-body{padding:24px 22px;}
+.svc-num{font-family:'Bebas Neue',sans-serif;font-size:42px;color:rgba(245,166,35,.2);line-height:1;margin-bottom:6px;}
+.svc-name{font-size:16px;font-weight:700;color:var(--white);letter-spacing:.5px;margin-bottom:10px;}
+.svc-ul{list-style:none;}
+.svc-ul li{
+  font-size:12px;color:rgba(255,255,255,.5);
+  padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05);
+  display:flex;align-items:center;gap:8px;
+}
+.svc-ul li:last-child{border-bottom:none;}
+.svc-ul li::before{content:'→';color:var(--gold);font-size:11px;flex-shrink:0;}
+.svc-line{
+  height:3px;width:0;background:linear-gradient(to right,var(--gold),var(--blue-lt));
+  transition:width .45s ease;border-radius:0 0 2px 2px;
+}
+.svc-card:hover .svc-line{width:100%;}
+
+/* ═══════════ WHY US ═══════════ */
+.why{background:var(--white);}
+.why-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:20px;margin-top:60px;
+}
+.w-card{
+  padding:36px 28px;border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--white);
+  transition:background .3s,transform .3s,border-color .3s,box-shadow .3s;
+  cursor:default;
+}
+.w-card:hover{
+  background:var(--navy);
+  border-color:var(--navy);
+  transform:translateY(-6px);
+  box-shadow:0 20px 40px rgba(11,44,110,.2);
+}
+.w-card:hover .w-num,.w-card:hover .w-title,.w-card:hover .w-p{color:var(--white);}
+.w-icon{
+  width:52px;height:52px;
+  background:var(--sky);border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;color:var(--blue);
+  margin-bottom:20px;
+  transition:background .3s,color .3s;
+}
+.w-card:hover .w-icon{background:rgba(255,255,255,.1);color:var(--gold);}
+.w-num{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--blue);line-height:1;margin-bottom:10px;transition:color .3s;}
+.w-title{font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--navy);margin-bottom:10px;transition:color .3s;}
+.w-p{font-size:13px;font-weight:300;color:var(--smoke);line-height:1.7;transition:color .3s;}
+
+/* ═══════════ PROJECTS ═══════════ */
+.projects{background:var(--sky2);}
+.proj-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;gap:20px;flex-wrap:wrap;}
+.proj-all{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  color:var(--blue);border-bottom:2px solid var(--gold);padding-bottom:4px;
+  transition:gap .3s,color .3s;
+}
+.proj-all:hover{gap:16px;color:var(--navy);}
+
+/* ---- masonry-style grid ---- */
+.proj-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:180px;
+  gap:10px;
+}
+.pi{position:relative;overflow:hidden;border-radius:8px;background:var(--navy);cursor:pointer;}
+.pi:nth-child(1){grid-column:span 8;grid-row:span 2;}
+.pi:nth-child(2){grid-column:span 4;}
+.pi:nth-child(3){grid-column:span 4;}
+.pi:nth-child(4){grid-column:span 4;grid-row:span 2;}
+.pi:nth-child(5){grid-column:span 4;grid-row:span 2;}
+.pi:nth-child(6){grid-column:span 4;grid-row:span 2;}
+.pi:nth-child(7){grid-column:span 6;}
+.pi:nth-child(8){grid-column:span 6;}
+.pi:nth-child(9){grid-column:span 4;grid-row:span 2;}
+.pi:nth-child(10){grid-column:span 4;grid-row:span 2;}
+.pi:nth-child(11){grid-column:span 4;grid-row:span 2;}
+
+.pi img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease,opacity .5s ease;}
+.pi:hover img{transform:scale(1.08);opacity:.45;}
+.pi-ov{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:22px 20px;
+  background:linear-gradient(to top,rgba(11,44,110,.92) 0%,transparent 60%);
+  opacity:0;transition:opacity .4s ease;
+}
+.pi:hover .pi-ov{opacity:1;}
+.pi-ov h4{
+  font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;
+  color:var(--white);line-height:1.2;
+}
+.pi-ov span{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-top:4px;display:block;}
+.pi-plus{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:48px;height:48px;border-radius:50%;
+  background:var(--gold);color:var(--navy);
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+  opacity:0;transition:opacity .4s;
+}
+.pi:hover .pi-plus{opacity:1;}
+
+/* ═══════════ SLIDESHOW ═══════════ */
+.slides-sec{background:var(--navy);position:relative;overflow:hidden;}
+.slideshow-container{max-width:100%;margin:0;}
+.mySlides{display:none;}
+.mySlides img{width:100%;height:500px;object-fit:cover;filter:brightness(.55);}
+.slide-inner{position:relative;}
+.slide-cap{
+  position:absolute;bottom:0;left:0;right:0;
+  display:flex;justify-content:space-between;align-items:flex-end;
+  padding:60px 80px 40px;
+  background:linear-gradient(to top,rgba(11,44,110,.9),transparent);
+}
+.sc-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+.sc-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--white);margin-top:6px;}
+.slide-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:rgba(255,255,255,.1);line-height:1;}
+.slide-dots{display:flex;align-items:center;justify-content:center;gap:10px;padding:18px 0;background:rgba(11,44,110,.6);}
+.dot{width:36px !important;height:3px !important;border-radius:2px !important;background:rgba(255,255,255,.2) !important;cursor:pointer;transition:background .3s !important;}
+.dot.on{background:var(--gold) !important;}
+.fade{animation:slFade .8s ease;}
+@keyframes slFade{from{opacity:.2}to{opacity:1}}
+
+/* ═══════════ CTA BAND ═══════════ */
+.cta-band{
+  background:linear-gradient(135deg,var(--blue) 0%,var(--navy) 100%);
+  padding:56px 0;position:relative;overflow:hidden;
+}
+.cta-band::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:280px;height:280px;border-radius:50%;
+  background:rgba(245,166,35,.1);
+}
+.cta-inner{
+  display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;
+}
+.cta-text h3{
+  font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;
+  color:var(--white);margin-bottom:8px;
+}
+.cta-text p{font-size:15px;color:rgba(255,255,255,.6);font-weight:300;}
+.btn-gold{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--gold);color:var(--navy);
+  font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:16px 36px;border-radius:4px;border:none;cursor:pointer;
+  transition:background .3s,transform .25s,box-shadow .3s;
+  box-shadow:0 4px 20px rgba(245,166,35,.4);white-space:nowrap;
+}
+.btn-gold:hover{background:#E8950D;transform:translateY(-3px);box-shadow:0 8px 28px rgba(245,166,35,.5);}
+
+/* ═══════════ CONTACT ═══════════ */
+.contact{background:var(--gray);}
+.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:start;}
+
+.ci-list{margin-top:40px;display:flex;flex-direction:column;gap:24px;}
+.ci-row{display:flex;align-items:flex-start;gap:16px;}
+.ci-icon{
+  width:46px;height:46px;min-width:46px;border-radius:10px;
+  background:var(--sky);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--blue);font-size:17px;
+}
+.ci-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);font-weight:700;display:block;margin-bottom:5px;}
+.ci-val{font-size:14px;color:var(--text);line-height:1.6;}
+.ci-val a{color:var(--text);transition:color .3s;}
+.ci-val a:hover{color:var(--blue);}
+.wa-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#25D366;color:var(--white);
+  font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  padding:10px 20px;border-radius:4px;margin-top:10px;
+  transition:background .3s,transform .25s;
+}
+.wa-btn:hover{background:#1eba58;transform:translateY(-2px);color:var(--white);}
+.c-social{display:flex;gap:10px;margin-top:36px;}
+.csi{
+  width:42px;height:42px;border-radius:8px;
+  border:1px solid var(--border);background:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--smoke);font-size:16px;
+  transition:background .3s,border-color .3s,color .3s,transform .25s;
+}
+.csi:hover{background:var(--navy);border-color:var(--navy);color:var(--white);transform:translateY(-3px);}
+
+/* Form */
+.form-panel{
+  background:var(--white);border-radius:12px;
+  padding:48px 44px;
+  box-shadow:0 8px 48px rgba(11,44,110,.1);
+  border:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.form-panel::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(to right,var(--blue),var(--gold));
+}
+.form-panel h3{
+  font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;
+  color:var(--navy);margin-bottom:28px;
+}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.cf-g{display:flex;flex-direction:column;gap:7px;margin-bottom:16px;}
+.cf-g label{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--smoke);}
+.cf-g input,.cf-g textarea{
+  background:var(--gray);border:1.5px solid transparent;
+  font-family:'Outfit',sans-serif;font-size:14px;color:var(--text);
+  padding:12px 16px;width:100%;outline:none;border-radius:6px;
+  transition:border-color .3s,background .3s;
+}
+.cf-g input:focus,.cf-g textarea:focus{
+  border-color:var(--blue);background:var(--white);
+}
+.cf-g textarea{resize:none;min-height:130px;}
+.btn-submit{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;background:linear-gradient(135deg,var(--blue),var(--navy));
+  color:var(--white);font-family:'Outfit',sans-serif;
+  font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:16px;border:none;border-radius:6px;cursor:pointer;
+  transition:opacity .3s,transform .25s,box-shadow .3s;
+  box-shadow:0 4px 20px rgba(26,86,196,.35);
+  margin-top:8px;
+}
+.btn-submit:hover{opacity:.9;transform:translateY(-2px);box-shadow:0 8px 28px rgba(26,86,196,.45);}
+
+/* ═══════════ FOOTER ═══════════ */
+footer{background:var(--navy);padding:64px 60px 28px;}
+.ft-inner{
+  max-width:1220px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;
+  padding-bottom:48px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.ft-logo{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.ft-logo img{width:50px;height:50px;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4));}
+.ft-logo-text strong{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:var(--white);display:block;}
+.ft-logo-text span{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:300;}
+.ft-brand p{font-size:13px;color:rgba(255,255,255,.35);line-height:1.8;max-width:270px;margin-top:4px;}
+.ft-col h5{font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:18px;}
+.ft-col ul{list-style:none;}
+.ft-col ul li a{
+  font-size:13px;color:rgba(255,255,255,.4);display:block;padding:5px 0;
+  transition:color .3s,padding-left .3s;
+}
+.ft-col ul li a:hover{color:var(--white);padding-left:8px;}
+.ft-copy{
+  max-width:1220px;margin:26px auto 0;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+  font-size:12px;color:rgba(255,255,255,.22);
+}
+
+/* ═══════════ REVEAL ═══════════ */
+.rv{opacity:0;transform:translateY(36px);transition:opacity .75s ease,transform .75s ease;}
+.rv.in{opacity:1;transform:translateY(0);}
+.rv-l{opacity:0;transform:translateX(-36px);transition:opacity .75s ease,transform .75s ease;}
+.rv-l.in{opacity:1;transform:translateX(0);}
+.rv-r{opacity:0;transform:translateX(36px);transition:opacity .75s ease,transform .75s ease;}
+.rv-r.in{opacity:1;transform:translateX(0);}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:1100px){
+  .svc-grid{grid-template-columns:repeat(2,1fr);}
+  .why-grid{grid-template-columns:repeat(2,1fr);}
+  .contact-grid{grid-template-columns:1fr;gap:52px;}
+  .ft-inner{grid-template-columns:1fr 1fr;}
+  .about-grid{grid-template-columns:1fr;gap:52px;}
+  .about-body{padding-left:0;}
+  .about-accent{display:none;}
+  .about-badge{left:16px;}
+  .pi:nth-child(1){grid-column:span 12;}
+  .pi:nth-child(2){grid-column:span 6;}
+  .pi:nth-child(3){grid-column:span 6;}
+  .pi:nth-child(4),.pi:nth-child(5),.pi:nth-child(6){grid-column:span 4;}
+  .pi:nth-child(7),.pi:nth-child(8){grid-column:span 6;}
+  .pi:nth-child(9),.pi:nth-child(10),.pi:nth-child(11){grid-column:span 4;}
+}
+@media(max-width:768px){
+  .nav{padding:14px 24px;}
+  .nav.stuck{padding:10px 24px;}
+  .nav-links{display:none;}
+  .burger{display:flex;}
+  .wrap,.hero-content,footer{padding-left:24px;padding-right:24px;}
+  .sec{padding:72px 0;}
+  .hero-content{padding-top:120px;padding-bottom:60px;}
+  .hero-stats{grid-template-columns:repeat(3,1fr);bottom:20px;left:24px;right:24px;}
+  .hs-card{padding:14px 16px;}
+  .hs-num{font-size:32px;}
+  .hero-scroll{display:none;}
+  .svc-grid{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:1fr;}
+  .cf-row{grid-template-columns:1fr;}
+  .form-panel{padding:32px 22px;}
+  .ft-inner{grid-template-columns:1fr;gap:32px;}
+  footer{padding:48px 24px 24px;}
+  .ft-copy{flex-direction:column;text-align:center;}
+  .slide-cap{padding:40px 24px 28px;}
+  .cta-inner{flex-direction:column;text-align:center;}
+  .pi:nth-child(n){grid-column:span 12;grid-row:span 1;}
+}
+/* Preview helper: hide loader overlay so page shows immediately for demos */
+#loader{display:none!important;visibility:visible!important;opacity:1!important;pointer-events:none!important}
 </style>
 </head>
 <body>
@@ -236,7 +667,526 @@ a{text-decoration:none;color:inherit;}
   <div class="burger" id="burger"><span></span><span></span><span></span></div>
 </nav>
 
-[...trimmed body content identical to new-page/index.html...]
+<!-- ══════════════════════════════
+     HERO
+══════════════════════════════ -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-shape"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge"><i class="fa fa-map-marker-alt"></i> Dodamarga &amp; Goa's Trusted Builder</div>
+    <h1 class="hero-h1">
+      Building <em>Trust</em><br>with Quality<br>Works
+    </h1>
+    <p class="hero-sub">
+      We deliver not just a home with walls, but a light of hope, dreams and the happiness of a family — from individual bungalows to full apartment complexes.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary"><i class="fa fa-hard-hat"></i> Free Estimate</a>
+      <a href="#portfolio" class="btn-outline"><i class="fa fa-images"></i> View Projects</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hs-card"><div class="hs-num">10+</div><div class="hs-lbl">Years Experience</div></div>
+    <div class="hs-card"><div class="hs-num">20+</div><div class="hs-lbl">Projects Done</div></div>
+    <div class="hs-card"><div class="hs-num">100%</div><div class="hs-lbl">Satisfaction</div></div>
+  </div>
+
+  <div class="hero-scroll"><div class="hs-txt">Scroll</div><div class="hs-line"></div></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="m-track">
+    <div class="m-item"><i class="fa fa-circle"></i>Civil Engineering</div>
+    <div class="m-item"><i class="fa fa-circle"></i>Bungalow Construction</div>
+    <div class="m-item"><i class="fa fa-circle"></i>Apartment Buildings</div>
+    <div class="m-item"><i class="fa fa-circle"></i>Land Surveying</div>
+    <div class="m-item"><i class="fa fa-circle"></i>Building Materials</div>
+    <div class="m-item"><i class="fa fa-circle"></i>3D Elevations</div>
+    <div class="m-item"><i class="fa fa-circle"></i>Road Construction</div>
+    <div class="m-item"><i class="fa fa-circle"></i>Project Management</div>
+    <div class="m-item"><i class="fa fa-circle"></i>Civil Engineering</div>
+    <div class="m-item"><i class="fa fa-circle"></i>Bungalow Construction</div>
+    <div class="m-item"><i class="fa fa-circle"></i>Apartment Buildings</div>
+    <div class="m-item"><i class="fa fa-circle"></i>Land Surveying</div>
+    <div class="m-item"><i class="fa fa-circle"></i>Building Materials</div>
+    <div class="m-item"><i class="fa fa-circle"></i>3D Elevations</div>
+    <div class="m-item"><i class="fa fa-circle"></i>Road Construction</div>
+    <div class="m-item"><i class="fa fa-circle"></i>Project Management</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     ABOUT
+══════════════════════════════ -->
+<section class="sec about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+
+      <div class="about-vis rv-l">
+        <img src="static/img/portfolio/ss-enterprises-constructions-residential-new-project.jpg" class="about-main" alt="SS Enterprises Project">
+        <img src="static/img/portfolio/contemporary-bungalow-architecture-ss-enterprises-constructions.jpg" class="about-accent" alt="project">
+        <div class="about-badge"><div class="ab-num">10+</div><div class="ab-lbl">Years<br>Experience</div></div>
+      </div>
+
+      <div class="about-body rv-r">
+        <div class="sec-tag">Who We Are</div>
+        <h2 class="sec-h2">We Build More Than Structures —<br>We Build <em>Dreams</em></h2>
+        <blockquote class="about-quote">
+          "We deliver not just a home with walls, but a light of hope, dreams and the happiness of a family."
+        </blockquote>
+        <p class="sec-p">
+          S S Enterprises has worked consistently to mark a unique presence in the real estate sector of Dodamarga &amp; Goa. From residential bungalows to multi-storey apartment complexes, every project is handled with precision and care by our qualified team.
+        </p>
+        <h4 style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);font-weight:700;margin-top:28px;margin-bottom:14px;">Why Choose Us</h4>
+        <div class="ab-checks">
+          <div class="ab-chk"><i class="fa fa-check-circle"></i>Experience &amp; Expertise</div>
+          <div class="ab-chk"><i class="fa fa-check-circle"></i>Free Consultation</div>
+          <div class="ab-chk"><i class="fa fa-check-circle"></i>Fully Insured</div>
+          <div class="ab-chk"><i class="fa fa-check-circle"></i>Satisfied Customers</div>
+          <div class="ab-chk"><i class="fa fa-check-circle"></i>Cost Control Experts</div>
+          <div class="ab-chk"><i class="fa fa-check-circle"></i>Project Management</div>
+          <div class="ab-chk"><i class="fa fa-check-circle"></i>100% Satisfaction</div>
+          <div class="ab-chk"><i class="fa fa-check-circle"></i>Affordable Pricing</div>
+        </div>
+        <div class="about-cta">
+          <a href="#contact" class="btn-primary" style="display:inline-flex;">Start Your Project <i class="fa fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     SERVICES
+══════════════════════════════ -->
+<section class="sec services" id="services">
+  <div class="wrap">
+    <div class="rv" style="text-align:center;">
+      <div class="sec-tag" style="justify-content:center;">What We Offer</div>
+      <h2 class="sec-h2" style="color:var(--white);">Our Core <em style="color:var(--gold);">Services</em></h2>
+      <p class="svc-intro" style="margin:0 auto;">End-to-end construction solutions — from blueprints and surveys to material supply and final handover.</p>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc-card rv">
+        <img class="svc-img" src="static/img/ss-enterprises-constructions-construction-worker-wearing-safety-helmet.jpg" alt="Engineers">
+        <div class="svc-line"></div>
+        <div class="svc-body">
+          <div class="svc-num">01</div>
+          <div class="svc-name">Engineers</div>
+          <ul class="svc-ul">
+            <li>Plans &amp; Submission Drawing</li>
+            <li>3D Elevations</li>
+            <li>Supervision by Qualified Staff</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="svc-card rv">
+        <img class="svc-img" src="static/img/portfolio/high-rise-commercial-building-construction-ss-enterprises-constructions.jpeg" alt="Contractors">
+        <div class="svc-line"></div>
+        <div class="svc-body">
+          <div class="svc-num">02</div>
+          <div class="svc-name">Contractors</div>
+          <ul class="svc-ul">
+            <li>Bungalow &amp; Row Houses</li>
+            <li>Apartment Buildings</li>
+            <li>Road Construction</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="svc-card rv">
+        <img class="svc-img" src="static/img/ss-enterprises-constructions-survey-construction-equipment-and-machinery.png" alt="Surveyors">
+        <div class="svc-line"></div>
+        <div class="svc-body">
+          <div class="svc-num">03</div>
+          <div class="svc-name">Surveyors</div>
+          <ul class="svc-ul">
+            <li>Topographical Survey</li>
+            <li>Building Marking &amp; Plotting</li>
+            <li>Total Station &amp; DGPS</li>
+          </ul>
+        </div>
+      </div>
+
+
+      <!-- LiDAR Drone Survey (Coming Soon) -->
+      <div class="svc-card rv">
+        <img class="svc-img" src="/static/img/ss-enterprises-constructions-survey-construction-equipment-and-machinery.png" alt="LiDAR Drone Survey" loading="lazy">
+        <div class="svc-line"></div>
+        <div class="svc-body">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+            <div>
+              <div class="svc-num">04</div>
+              <div class="svc-name">LiDAR Drone Survey</div>
+            </div>
+            <div style="background:var(--gold);color:var(--navy);font-weight:700;padding:6px 10px;border-radius:6px;font-size:12px;white-space:nowrap;">Coming Soon</div>
+          </div>
+          <ul class="svc-ul">
+            <li>High-resolution terrain mapping</li>
+            <li>Topographic &amp; 3D models</li>
+            <li>Accurate site surveys using drones</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     WHY US
+══════════════════════════════ -->
+<section class="sec why">
+  <div class="wrap">
+    <div class="rv" style="text-align:center;max-width:560px;margin:0 auto 0;">
+      <div class="sec-tag" style="justify-content:center;">Our Promise</div>
+      <h2 class="sec-h2">Built on <em>Values</em></h2>
+      <p class="sec-p">Four pillars that make every SS Enterprises project an experience you can trust.</p>
+    </div>
+    <div class="why-grid">
+      <div class="w-card rv">
+        <div class="w-icon"><i class="fa fa-medal"></i></div>
+        <div class="w-num">01</div>
+        <div class="w-title">Trusted Expertise</div>
+        <p class="w-p">Over a decade of hands-on experience across residential and commercial projects in Dodamarga &amp; Goa.</p>
+      </div>
+      <div class="w-card rv">
+        <div class="w-icon"><i class="fa fa-file-invoice"></i></div>
+        <div class="w-num">02</div>
+        <div class="w-title">Full Transparency</div>
+        <p class="w-p">Detailed quotations, no hidden costs, and regular project updates keep you fully in control throughout.</p>
+      </div>
+      <div class="w-card rv">
+        <div class="w-icon"><i class="fa fa-gem"></i></div>
+        <div class="w-num">03</div>
+        <div class="w-title">Quality Materials</div>
+        <p class="w-p">We supply our own premium building materials — ensuring consistent quality from foundation to finish.</p>
+      </div>
+      <div class="w-card rv">
+        <div class="w-icon"><i class="fa fa-clock"></i></div>
+        <div class="w-num">04</div>
+        <div class="w-title">On-Time Delivery</div>
+        <p class="w-p">Disciplined project management with qualified engineers ensuring your home is delivered on schedule.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     PROJECTS
+══════════════════════════════ -->
+<section class="sec projects" id="portfolio">
+  <div class="wrap">
+    <div class="proj-head">
+      <div class="rv">
+        <div class="sec-tag">Our Portfolio</div>
+        <h2 class="sec-h2">Our Finest <em>Work</em></h2>
+      </div>
+      <a href="#portfolio" class="proj-all rv">View All Projects <i class="fa fa-arrow-right"></i></a>
+    </div>
+
+    <div class="proj-grid">
+
+      <div class="pi rv">
+        <a href="static/img/portfolio/new_bungalow_ssenterprisesconstructions.jpg" data-lightbox-gallery="gallery1" title="Modern Bungalow">
+          <img src="static/img/portfolio/new_bungalow_ssenterprisesconstructions.jpg" alt="Modern Bungalow">
+          <div class="pi-ov"><h4>Modern Bungalow</h4><span>Residential · Completed</span></div>
+          <div class="pi-plus"><i class="fa fa-search-plus"></i></div>
+        </a>
+      </div>
+
+      <div class="pi rv">
+        <a href="static/img/portfolio/high-rise-commercial-building-construction-ss-enterprises-constructions.jpeg" data-lightbox-gallery="gallery1" title="Nandanvan Building">
+          <img src="static/img/portfolio/high-rise-commercial-building-construction-ss-enterprises-constructions.jpeg" alt="Nandanvan">
+          <div class="pi-ov"><h4>Nandanvan Building</h4><span>Commercial · Dodamarga</span></div>
+          <div class="pi-plus"><i class="fa fa-search-plus"></i></div>
+        </a>
+      </div>
+
+      <div class="pi rv">
+        <a href="static/img/portfolio/ss-enterprises-constructions-residential-new-project.jpg" data-lightbox-gallery="gallery1" title="Porvorim Project">
+          <img src="static/img/portfolio/ss-enterprises-constructions-residential-new-project.jpg" alt="Porvorim">
+          <div class="pi-ov"><h4>Porvorim Project</h4><span>Residential · Ongoing</span></div>
+          <div class="pi-plus"><i class="fa fa-search-plus"></i></div>
+        </a>
+      </div>
+
+      <div class="pi rv">
+        <a href="static/img/portfolio/stylish-bungalow-design-ss-enterprises-constructions.jpg" data-lightbox-gallery="gallery1" title="Stylish Bungalow">
+          <img src="static/img/portfolio/stylish-bungalow-design-ss-enterprises-constructions.jpg" alt="Stylish Bungalow">
+          <div class="pi-ov"><h4>Stylish Bungalow</h4><span>Residential · Completed</span></div>
+          <div class="pi-plus"><i class="fa fa-search-plus"></i></div>
+        </a>
+      </div>
+
+      <div class="pi rv">
+        <a href="static/img/portfolio/sample-bungalow-exterior-design-ss-enterprises-constructions.jpg" data-lightbox-gallery="gallery1" title="Sample Exterior">
+          <img src="static/img/portfolio/sample-bungalow-exterior-design-ss-enterprises-constructions.jpg" alt="Sample Exterior">
+          <div class="pi-ov"><h4>Sample Exterior</h4><span>3D Design</span></div>
+          <div class="pi-plus"><i class="fa fa-search-plus"></i></div>
+        </a>
+      </div>
+
+      <div class="pi rv">
+        <a href="static/img/portfolio/modern-bungalow-design-ss-enterprises-constructions.jpg" data-lightbox-gallery="gallery1" title="Modern Design">
+          <img src="static/img/portfolio/modern-bungalow-design-ss-enterprises-constructions.jpg" alt="Modern Design">
+          <div class="pi-ov"><h4>Modern Design</h4><span>Bungalow · 3D Render</span></div>
+          <div class="pi-plus"><i class="fa fa-search-plus"></i></div>
+        </a>
+      </div>
+
+      <div class="pi rv">
+        <a href="static/img/portfolio/energy-efficient-building-design.jpeg" data-lightbox-gallery="gallery1" title="Energy Efficient Design">
+          <img src="static/img/portfolio/energy-efficient-building-design.jpeg" alt="Energy Efficient">
+          <div class="pi-ov"><h4>Energy Efficient Build</h4><span>Bungalow · Modern</span></div>
+          <div class="pi-plus"><i class="fa fa-search-plus"></i></div>
+        </a>
+      </div>
+
+      <div class="pi rv">
+        <a href="static/img/portfolio/contemporary-bungalow-architecture-ss-enterprises-constructions.jpg" data-lightbox-gallery="gallery1" title="Contemporary Architecture">
+          <img src="static/img/portfolio/contemporary-bungalow-architecture-ss-enterprises-constructions.jpg" alt="Contemporary">
+          <div class="pi-ov"><h4>Contemporary Architecture</h4><span>Bungalow · Aerial</span></div>
+          <div class="pi-plus"><i class="fa fa-search-plus"></i></div>
+        </a>
+      </div>
+
+      <div class="pi rv">
+        <a href="static/img/portfolio/sustainable-construction-practices_sample_design.jpeg" data-lightbox-gallery="gallery1" title="Sustainable Build">
+          <img src="static/img/portfolio/sustainable-construction-practices_sample_design.jpeg" alt="Sustainable">
+          <div class="pi-ov"><h4>Sustainable Build</h4><span>Eco · Modern Design</span></div>
+          <div class="pi-plus"><i class="fa fa-search-plus"></i></div>
+        </a>
+      </div>
+
+      <div class="pi rv">
+        <a href="static/img/portfolio/architectural-blueprint-plans.jpeg" data-lightbox-gallery="gallery1" title="Blueprint Plans">
+          <img src="static/img/portfolio/architectural-blueprint-plans.jpeg" alt="Blueprint">
+          <div class="pi-ov"><h4>Blueprint Planning</h4><span>Architecture · Design</span></div>
+          <div class="pi-plus"><i class="fa fa-search-plus"></i></div>
+        </a>
+      </div>
+
+      <div class="pi rv">
+        <a href="static/img/portfolio/beautifully-furnished-bungalow-dining-room.jpeg" data-lightbox-gallery="gallery1" title="Furnished Interior">
+          <img src="static/img/portfolio/beautifully-furnished-bungalow-dining-room.jpeg" alt="Interior">
+          <div class="pi-ov"><h4>Bungalow Interior</h4><span>Interior · Furnished</span></div>
+          <div class="pi-plus"><i class="fa fa-search-plus"></i></div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     SLIDESHOW
+══════════════════════════════ -->
+<div class="slides-sec">
+  <div class="slideshow-container">
+
+    <div class="mySlides fade">
+      <div class="slide-inner">
+        <img src="static/img/portfolio/new_bungalow_ssenterprisesconstructions.jpg" alt="New bungalow completed by SS Enterprises">
+        <div class="slide-cap">
+          <div><div class="sc-sub">Featured Project</div><div class="sc-title">Modern Two-Storey Bungalow</div></div>
+          <div class="slide-num">01</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mySlides fade">
+      <div class="slide-inner">
+        <img src="static/img/portfolio/contemporary-bungalow-architecture-ss-enterprises-constructions.jpg" alt="Contemporary bungalow architecture by SS Enterprises">
+        <div class="slide-cap">
+          <div><div class="sc-sub">Featured Project</div><div class="sc-title">Contemporary Bungalow Architecture</div></div>
+          <div class="slide-num">02</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mySlides fade">
+      <div class="slide-inner">
+        <img src="static/img/portfolio/stylish-bungalow-design-ss-enterprises-constructions.jpg" alt="Stylish bungalow exterior design">
+        <div class="slide-cap">
+          <div><div class="sc-sub">Featured Project</div><div class="sc-title">Stylish Bungalow Design</div></div>
+          <div class="slide-num">03</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mySlides fade">
+      <div class="slide-inner">
+        <img src="static/img/portfolio/sample-bungalow-exterior-design-ss-enterprises-constructions.jpg" alt="Sample bungalow exterior design">
+        <div class="slide-cap">
+          <div><div class="sc-sub">Featured Project</div><div class="sc-title">Sample Exterior Design</div></div>
+          <div class="slide-num">04</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="slide-dots">
+    <span class="dot on"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="wrap">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <h3>Ready to Build Your Dream Home?</h3>
+        <p>Get a free consultation and estimate from our expert team today.</p>
+      </div>
+      <a href="#contact" class="btn-gold"><i class="fa fa-hard-hat"></i> Get Free Estimate</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     CONTACT
+══════════════════════════════ -->
+<section class="sec contact" id="contact">
+  <!-- Replace server-side template with client-side handling of ?scroll=param (moved to /static/js/new-page-inline.js) -->
+  <div class="wrap">
+    <div class="contact-grid">
+
+      <!-- Info side -->
+      <div class="rv-l">
+        <div class="sec-tag">Get In Touch</div>
+        <h2 class="sec-h2">Let's Build Something<br><em>Extraordinary</em></h2>
+        <p class="sec-p">Ready to start? Reach out for a free consultation. We'll get back within 24 hours.</p>
+
+        <div class="ci-list">
+          <div class="ci-row">
+            <div class="ci-icon"><i class="fa fa-user"></i></div>
+            <div>
+              <span class="ci-lbl">Contact Person</span>
+              <div class="ci-val">Ganesh C. Shetye<br><span style="color:var(--blue);font-weight:600;">Civil Engineer</span></div>
+            </div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-icon"><i class="fa fa-location-dot"></i></div>
+            <div>
+              <span class="ci-lbl">Office Address</span>
+              <div class="ci-val">Shop No. GF7, Nandanvan Building,<br>Maneri-Sawantwadi Road,<br>Dodamarg – 416512</div>
+            </div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-icon"><i class="fa fa-phone"></i></div>
+            <div>
+              <span class="ci-lbl">Phone</span>
+              <div class="ci-val">
+                <a href="tel:9423313016">9423313016</a> &nbsp;/&nbsp;
+                <a href="tel:8975235785">8975235785</a>
+              </div>
+              <a href="https://api.whatsapp.com/send?phone=+919423313016" target="_blank" class="wa-btn">
+                <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-icon"><i class="fa fa-envelope"></i></div>
+            <div>
+              <span class="ci-lbl">Email</span>
+                  <div class="ci-val">
+                    <a href="mailto:ganeshshetye6976@gmail.com">ganeshshetye6976@gmail.com</a>
+                  </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-social">
+          <a href="https://www.facebook.com/S-S-Enterprises-1473632506103186/" target="_blank" class="csi"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="csi"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="csi"><i class="fab fa-youtube"></i></a>
+          <a href="https://api.whatsapp.com/send?phone=+919423313016" target="_blank" class="csi"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <!-- Form side -->
+      <div class="rv-r">
+        <div class="form-panel">
+          <h3>Send Us a Message</h3>
+          <form method="POST">
+            <input type="text" name="email_confirm" style="display:none">
+            <div class="cf-row">
+              <div class="cf-g">
+                <label>Your Name</label>
+                <input type="text" placeholder="" required name="cname" maxlength="40">
+              </div>
+              <div class="cf-g">
+                <label>Contact Number</label>
+                <input type="text" placeholder="" required name="cnum" maxlength="11">
+              </div>
+            </div>
+            <div class="cf-g">
+              <label>Tell Us About Your Project</label>
+              <textarea placeholder="" required name="cmsg" maxlength="400"></textarea>
+            </div>
+            <!-- reCAPTCHA removed for static deployment; form submissions are not sent from static site -->
+            <button type="submit" class="btn-submit">
+              <i class="fa fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     FOOTER
+══════════════════════════════ -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand">
+      <div class="ft-logo">
+        <img src="static/img/ss-enterprises-constructions-logo-svg.svg" alt="SS Enterprises">
+        <div class="ft-logo-text">
+          <strong>SS Enterprises</strong>
+          <span>Engineers &amp; Contractors</span>
+        </div>
+      </div>
+      <p>Building trust with quality works. Serving Dodamarga &amp; Goa for over a decade with excellence in every project.</p>
+    </div>
+    <div class="ft-col">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Our Services</a></li>
+        <li><a href="#portfolio">Projects</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Civil Engineering</a></li>
+        <li><a href="#services">Bungalows &amp; Apartments</a></li>
+        <li><a href="#services">Land Surveying</a></li>
+        <li><a href="#services">Building Materials</a></li>
+        <li><a href="#services">Road Construction</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-copy">
+    <span>© 2026 SS Enterprises Constructions. All Rights Reserved.</span>
+    <span>Dodamarga · Sindhudurg · Goa</span>
+  </div>
+</footer>
 
 <!-- ─── SCRIPTS ─── -->
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
@@ -244,515 +1194,4 @@ a{text-decoration:none;color:inherit;}
 <script type="text/javascript" src="/static/js/nivo-lightbox.js"></script>
 <script src="/static/js/new-page-inline.js"></script>
 </body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="SS Enterprises - Construction services in Dodamarg, Goa, and Kolhapur. Residential and commercial building construction, surveys, and building material supply.">
-<meta name="keywords" content="construction Dodamarg, construction Goa, construction Kolhapur, bungalow construction, building contractor, surveyor, construction materials">
-<link rel="canonical" href="https://ssenterprisesconstructions.in/">
-<meta name="theme-color" content="#0a74da">
-<title>SS Enterprises Constructions | High-Quality Construction Services</title>
-<!-- Removed reCAPTCHA include (static site; no third-party runtime integrations) -->
-<link rel="shortcut icon" href="static/img/ss-enterprises-constructions-logo.jpg" type="image/x-icon">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="static/fonts/font-awesome/css/font-awesome.css">
-  <link rel="stylesheet" type="text/css" href="static/css/style.css">
-<link rel="stylesheet" type="text/css" href="static/css/nivo-lightbox/nivo-lightbox.css">
-<link rel="stylesheet" type="text/css" href="static/css/nivo-lightbox/default.css">
-<!-- Performance hints -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="dns-prefetch" href="//fonts.googleapis.com">
-<link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
-<!-- Consider adding rel="preload" for critical CSS in future for faster Largest Contentful Paint -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
-<!-- Open Graph -->
-<meta property="og:title" content="SS Enterprises - Construction services in Dodamarg, Goa & Kolhapur">
-<meta property="og:description" content="Reliable building construction, surveying and material supply. Serving Dodamarg, Goa, and Kolhapur.">
-<meta property="og:image" content="/static/img/og-image-1200x630.jpg">
-<meta property="og:url" content="https://ssenterprisesconstructions.in/">
-<meta property="og:type" content="website">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="SS Enterprises - Construction services in Dodamarg, Goa & Kolhapur">
-<meta name="twitter:description" content="Reliable building construction, surveying and material supply. Serving Dodamarg, Goa, and Kolhapur.">
-<meta name="twitter:image" content="/static/img/og-image-1200x630.jpg">
-
-<!-- Structured Data (LocalBusiness) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "SS Enterprises",
-  "description": "Construction services including residential and commercial construction, surveying and building material supply serving Dodamarg, Goa, and Kolhapur.",
-  "url": "https://ssenterprisesconstructions.in/",
-  "telephone": "+91 9423313016",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Shop No. GF7, Nandanvan Building, Maneri-Sawantwadi Road",
-    "addressLocality": "Dodamarg",
-    "addressRegion": "Maharashtra",
-    "postalCode": "416512",
-    "addressCountry": "IN"
-  },
-  "areaServed": ["Dodamarg","Goa","Kolhapur"],
-  "sameAs": ["https://www.facebook.com/S-S-Enterprises-1473632506103186/"]
-}
-</script>
-  <style>
-* {box-sizing: border-box;}
-body {font-family: Verdana, sans-serif;}
-.mySlides {display: none;}
-img {vertical-align: middle;}
-
-/* Slideshow container */
-.slideshow-container {
-  max-width: 900px;
-  position: relative;
-  margin: auto;
-}
-
-/* Caption text */
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-/* The dots/bullets/indicators */
-.dot {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 2s ease;
-}
-
-.active {
-  /* background-color: #717171; */
-}
-
-/* Fading animation */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 2s;
-  animation-name: fade;
-  animation-duration: 2s;
-}
-
-@-webkit-keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
-
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .text {font-size: 11px}
-}
-</style>
-</head>
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top"> <!--style="overflow: hidden"-->
-  <div id="foo" class="blur-filter">
-  <div class="service-media"> <a href="#page-top" class="page-scroll"><img src="static/img/ss-enterprises-constructions-logo-svg.svg" loading="eager" style="width: 7%;position: fixed; z-index: 10000;margin-left: 6%;margin-top: -0.5%" alt="SS Enterprises logo"></a> </div>
-<nav id="menu" class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-      <ul class="nav navbar-nav navbar-right" style="display: flex;">
-        <li><a href="#about" class="page-scroll">About</a></li>
-        <li><a href="#services" class="page-scroll">Services</a></li>
-        <li><a href="#portfolio" class="page-scroll">Projects</a></li>
-
-        <li><a href="#contact" class="page-scroll">Contact</a></li>
-      </ul>
-  </div>
-</nav>
-<!-- Header -->
-<header id="header">
-  <div class="intro">
-    <div class="overlay">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2 intro-text">
-            <h1 style="font-family: 'FontAwesome';font-size: 330%">“Building Trust with Quality Works”</h1>
-            <h1 style="font-family: 'FontAwesome';font-size: 150%">Transforming Spaces, Creating Memories !</h1>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-</header>
-<div id="get-touch">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-6 col-md-offset-1">
-        <h3>Unlock the Door to Your Dream Home</h3>
-        <p>Get started today and complete our form to request your free estimate</p>
-      </div>
-      <div class="col-xs-12 col-md-4 text-center"><a href="#contact" class="btn btn-custom btn-lg page-scroll">Get Estimate</a></div>
-    </div>
-  </div>
-</div>
-<div id="about">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-6"> <img src="static/img/ss-enterprises-constructions-men-at-work.jpeg" class="img-responsive" loading="lazy" alt="SS Enterprises team at work in Dodamarg conducting construction activities"> </div>
-      <div class="col-xs-12 col-md-6">
-        <div class="about-text">
-          <h2>Who We Are</h2>
-          <p>We at S S ENTERPRISES Deliver not just a home with construction of walls but a light of hope, Dreams and the happiness of a family. We worked consistently to mark our unique presence in the real estate sector of Dodamarga & Goa.</p>
-          <h3>Why Choose Us?</h3>
-          <div class="list-style">
-            <div class="col-lg-6 col-sm-6 col-xs-12">
-              <ul>
-                <li>Experience</li>
-                <li>Fully Insured</li>
-                <li>Cost Control Experts</li>
-                <li>100% Satisfaction Guarantee</li>
-              </ul>
-            </div>
-            <div class="col-lg-6 col-sm-6 col-xs-12">
-              <ul>
-                <li>Free Consultation</li>
-                <li>Satisfied Customers</li>
-                <li>Project Management</li>
-                <li>Affordable Pricing</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div id="services">
-  <div class="container">
-    <div class="section-title">
-      <h2 style="text-align: center;">Our Services</h2>
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-        <div class="service-media"> <img src="static/img/ss-enterprises-constructions-construction-worker-wearing-safety-helmet.jpg" loading="lazy" alt="Construction worker wearing safety helmet on site"> </div>
-        <div class="service-desc">
-          <h3>ENGINEERS</h3>
-          <p>We provide all types of Civil Engineering work.</p>
-          <ul style="list-style: disc; margin-left: inherit;">
-                <li>Plans</li>
-                <li>Submission Drawing</li>
-                <li>3D Elevations</li>
-                <li>Supervision with Qualified staff</li>
-              </ul>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="service-media"> <img src="static/img/ss-enterprises-constructions-high-rise-commercial-building-construction.jpeg" loading="lazy" alt="High-rise commercial building construction project"> </div>
-        <div class="service-desc">
-          <h3>CONTRACTORS</h3>
-          <ul style="list-style: disc; margin-left: inherit;">
-                <li>Building Constructions</li>
-                <li>Bungalow/Row Houses</li>
-                <li>Road Construction</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="service-media"> <img src="static/img/ss-enterprises-constructions-survey-construction-equipment-and-machinery.png" loading="lazy" alt="Survey equipment and construction machinery used for site surveys"> </div>
-        <div class="service-desc">
-          <h3>SURVEYORS</h3>
-          <p>Land Survey with Quality instrument such as Total Station(T.S.) and Differential Global Positioning System(DGPS)</p>
-          <ul style="list-style: disc; margin-left: inherit;">
-                <li>Topographical Survey</li>
-                <li>Building Marking</li>
-                <li>Plotting</li>
-                <li>L-Section</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="service-media"> <img src="static/img/ss-enterprises-constructions-construction-materials-and-supplies.jpg" loading="lazy" alt="Building materials and construction supplies"> </div>
-        <div class="service-desc">
-          <h3>BUILDING MATERIAL SUPPLIER</h3>
-          <ul style="list-style: disc; margin-left: inherit;">
-                <li>All the type of Aggregates</li>
-                <li>Sand</li>
-                <li>Laterite Stone / Rubble Soling</li>
-                <li>Cement</li>
-          </ul>
-        </div>
-      </div>
-     </div>
-    </div>
-  </div>
-<div id="portfolio">
-  <div class="container">
-    <div class="section-title">
-      <h2 style="text-align: center;">Discover Our Masterpieces: Showcasing Our Finest Work</h2>
-    </div>
-    <div class="row">
-      <div class="portfolio-items">
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="static/img/portfolio/high-rise-commercial-building-construction-ss-enterprises-constructions.jpeg" title="Nandanvan" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Nandanvan</h4>
-              </div>
-              <img src="static/img/portfolio/high-rise-commercial-building-construction-ss-enterprises-constructions.jpeg" class="img-responsive" loading="lazy" alt="Nandanvan residential/commercial project, Dodamarg"> </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="static/img/portfolio/ss-enterprises-constructions-residential-new-project.jpg" title="Ongoing Project at Porvorim" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Ongoing Project at Porvorim</h4>
-              </div>
-              <img src="static/img/portfolio/ss-enterprises-constructions-residential-new-project.jpg" class="img-responsive" loading="lazy" alt="Ongoing residential project at Porvorim - SS Enterprises"> </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="static/img/portfolio/architectural-blueprint-plans.jpeg" title="Sample Bunglow" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Sample Bunglow</h4>
-              </div>
-              <img src="static/img/portfolio/architectural-blueprint-plans.jpeg" class="img-responsive" loading="lazy" alt="Architectural blueprint plans for bungalow design" style="margin-top: 2%"> </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="static/img/portfolio/energy-efficient-building-design.jpeg" title="Sample Bunglow" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Sample bunglow</h4>
-              </div>
-              <img src="static/img/portfolio/energy-efficient-building-design.jpeg" class="img-responsive" loading="lazy" alt="Energy-efficient bungalow design concept" style="margin-top: 2%"> </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="static/img/portfolio/sustainable-construction-practices_sample_design.jpeg" title="Sample Bunglow" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Sample Bunglow</h4>
-              </div>
-              <img src="static/img/portfolio/sustainable-construction-practices_sample_design.jpeg" class="img-responsive" loading="lazy" alt="Sustainable construction practices sample design" style="margin-top: 2%;height: 225px;"> </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="static/img/portfolio/beautifully-furnished-bungalow-dining-room.jpeg" title="Sample Bunglow" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Sample Bunglow</h4>
-              </div>
-              <img src="static/img/portfolio/beautifully-furnished-bungalow-dining-room.jpeg" class="img-responsive" loading="lazy" alt="Beautifully furnished bungalow dining area"> </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="static/img/portfolio/new_bungalow_ssenterprisesconstructions.jpg" title="Sample Bunglow" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Sample Bunglow</h4>
-              </div>
-              <img src="static/img/portfolio/new_bungalow_ssenterprisesconstructions.jpg" class="img-responsive" loading="lazy" alt="New bungalow completed by SS Enterprises"> </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="slideshow-container">
-<div class="mySlides fade">
-  <div class="numbertext">1 / 4</div>
-  <img src="static/img/portfolio/contemporary-bungalow-architecture-ss-enterprises-constructions.jpg" loading="lazy" alt="Contemporary bungalow architecture by SS Enterprises" style="width:100%">
-<!--            <div class="text">Caption Text</div>-->
-</div>
-<div class="mySlides fade">
-  <div class="numbertext">2 / 4</div>
-  <img src="static/img/portfolio/stylish-bungalow-design-ss-enterprises-constructions.jpg" loading="lazy" alt="Stylish bungalow exterior design" style="width:100%">
-<!--            <div class="text">Caption Two</div>-->
-</div>
-<div class="mySlides fade">
-  <div class="numbertext">3 / 4</div>
-  <img src="static/img/portfolio/modern-bungalow-design-ss-enterprises-constructions.jpg" loading="lazy" alt="Modern bungalow design concept" style="width:100%">
-<!--            <div class="text">Caption Three</div>-->
-</div>
-<div class="mySlides fade">
-  <div class="numbertext">3 / 4</div>
-  <img src="static/img/portfolio/sample-bungalow-exterior-design-ss-enterprises-constructions.jpg" loading="lazy" alt="Sample bungalow exterior design" style="width:100%">
-<!--            <div class="text">Caption Three</div>-->
-</div>
-</div>
-<br>
-<div style="text-align:center">
-  <span class="dot"></span>
-  <span class="dot"></span>
-  <span class="dot"></span>
-  <span class="dot"></span>
-</div>
-<div id="contact" style="padding-bottom: 0px;">
-  <!-- {% if scroll %}
-<script>
-    document.location.hash = '#' + '{{ scroll }}';
-</script>
-{% endif %} -->
-  <div class="container">
-    <div class="col-md-8">
-      <div class="row">
-        <div class="section-title">
-          <h2>Let's Build Something Extraordinary</h2>
-          <p>Please fill out the form below to send us an email and we will get back to you as soon as possible.</p>
-        </div>
-        <!-- Static form: will be handled on-client only (no backend) -->
-        <form id="contactForm" action="#" method="GET">    
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="text" name="email_confirm" style="display:none">
-                <input type="text" class="form-control" placeholder="Name" required="required" name="cname" maxlength="40">
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" class="form-control" placeholder="Contact Number" required="required" name="cnum" maxlength="11">
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <textarea class="form-control" rows="4" placeholder="Type your message here!" required name="cmsg" maxlength="400"></textarea>
-            <p class="help-block text-danger"></p>
-          </div>
-          <!-- <div id="html_element"></div>
-          <div class="g-recaptcha" data-sitekey="6LczujQnAAAAAB9G-zqMP720tpZSQEYxsYSBs0XA"></div> -->
-          <button id="submitBtn" type="submit" class="btn btn-custom btn-lg" disabled aria-disabled="true" title="Submissions disabled on static site">Send Message</button>
-        </form>
-      </div>
-    </div>
-    <div class="col-md-3 col-md-offset-1 contact-info">
-      <div class="contact-item">
-        <h4 style="margin-bottom: 12px;">Contact Info</h4>
-        <p>GANESH C. SHETYE <br> CIVIL ENGINEER </p>
-        <p><span>Address</span>Shop No. GF7, Nandanvan Building, Maneri-Sawantwadi Road, Dodamarg - 416512 </p>
-      </div>
-      <div class="contact-item">
-        <p><span>Phone</span> 9423313016 <a href="https://api.whatsapp.com/send?phone=+919423313016" target="_blank">
-          <img border="0" alt="WhatsApp link to SS Enterprises" loading="lazy" src="static/img/whatsapp.svg" style="width: 10%;margin-left:4%"></a>
-        <br> 8975235785 </p>
-      </div>
-      <div class="contact-item">
-        <p><span>Email</span> ganeshshetye6976@gmail.com</p>
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="row">
-        <div class="social">
-          <ul>
-            <li><a href="https://www.facebook.com/S-S-Enterprises-1473632506103186/" target="_blank"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="https://www.facebook.com/S-S-Enterprises-1473632506103186/"><i class="fa fa-youtube"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-  </div>
-    
-    <!--
-      Note: This form is static and will NOT send an email without a backend.
-      The client-side handler below only simulates submission, shows a success
-      message and redirects to `?submitted=1#contact`.
-    -->
-    
-</body>
-<script type="text/javascript" src="static/js/jquery.1.11.1.js"></script>
-<script type="text/javascript" src="static/js/bootstrap.js"></script>
-<script type="text/javascript" src="static/js/nivo-lightbox.js"></script>
-<script type="text/javascript" src="static/js/jqBootstrapValidation.js"></script>
-<script type="text/javascript" src="static/js/main.js"></script>
-<script>
-(function(){
-  var form = document.getElementById('contactForm');
-  if (!form) return;
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    var submitBtn = document.getElementById('submitBtn');
-    if (submitBtn && submitBtn.disabled) {
-      var info = document.createElement('div');
-      info.className = 'alert alert-info';
-      info.style.marginTop = '12px';
-      info.textContent = 'Form submissions are disabled on this static site.';
-      // insert only if not already shown
-      if (!form.parentNode.querySelector('.alert.alert-info')) {
-        form.parentNode.insertBefore(info, form);
-      }
-      return;
-    }
-    var honeypot = form.querySelector('[name="email_confirm"]');
-    if (honeypot && honeypot.value) {
-      return; // likely bot
-    }
-    var msg = document.createElement('div');
-    msg.className = 'alert alert-success';
-    msg.style.marginTop = '12px';
-    msg.textContent = 'Thank you! Submission simulated. This site is static and does not send emails without a backend.';
-    form.parentNode.insertBefore(msg, form);
-    setTimeout(function(){
-      window.location.href = window.location.pathname + '?submitted=1#contact';
-    }, 900);
-  });
-})();
-</script>
-<script>
-var slideIndex = 0;
-showSlides();
-
-function showSlides() {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-  setTimeout(showSlides, 2000); // Change image every 2 seconds
-}
-</script>
 </html>
