@@ -89,16 +89,27 @@
     }
   })();
 
-  // validateForm (same logic as before)
+  // validateForm: instead of POSTing, open WhatsApp with prefilled message and prevent submission
   window.validateForm = function(){
-    if(typeof grecaptcha==='undefined' || typeof grecaptcha.getResponse!=='function'){
-      alert('reCAPTCHA is not available — this is a static site and messages are not sent. Please contact via email or phone.');
-      return false;
-    }
     try{
-      if(grecaptcha.getResponse().length===0){alert('Please complete the reCAPTCHA.');return false;}
-    }catch(e){return false;}
-    return true;
+      var name = (document.querySelector('input[name="cname"]')||{value:''}).value.trim();
+      var phone = (document.querySelector('input[name="cnum"]')||{value:''}).value.trim();
+      var msg = (document.querySelector('textarea[name="cmsg"]')||{value:''}).value.trim();
+      var lines = [];
+      if(name) lines.push('Name: ' + name);
+      if(phone) lines.push('Phone: ' + phone);
+      if(msg) lines.push('Message: ' + msg);
+      var text = lines.join('\n');
+      // Company WhatsApp number (international format without leading zeros/spaces)
+      var company = '+919423313016';
+      var url = 'https://api.whatsapp.com/send?phone=' + encodeURIComponent(company) + '&text=' + encodeURIComponent(text || 'Hello, I would like to enquire about your services.');
+      window.open(url, '_blank');
+    }catch(e){
+      // fallback: show a message
+      alert('Unable to open WhatsApp. Please contact via email or phone.');
+    }
+    // prevent actual form submission on static site
+    return false;
   };
 
 })();
