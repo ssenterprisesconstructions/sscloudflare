@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="SS Enterprises Constructions — Premium construction company in Dodamarga & Goa. Bungalows, apartments, civil engineering, surveying & building materials.">
 <title>SS Enterprises Constructions | Engineers & Contractors</title>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<link rel="shortcut icon" href="static/img/ss-enterprises-constructions-logo.jpg" type="image/x-icon">
+<!-- reCAPTCHA removed for static deployment (no backend) -->
+<link rel="shortcut icon" href="/static/img/ss-enterprises-constructions-logo.jpg" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" type="text/css" href="static/css/nivo-lightbox/nivo-lightbox.css">
-<link rel="stylesheet" type="text/css" href="static/css/nivo-lightbox/default.css">
+<link rel="stylesheet" href="/static/fonts/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/static/css/nivo-lightbox/nivo-lightbox.css">
+<link rel="stylesheet" type="text/css" href="/static/css/nivo-lightbox/default.css">
 <style>
 /* ═══════════ DESIGN SYSTEM ═══════════ */
 :root{
@@ -1132,7 +1132,7 @@ footer{background:var(--navy);padding:64px 60px 28px;}
               <label>Tell Us About Your Project</label>
               <textarea placeholder="I want to build a 2BHK bungalow in Dodamarga with a budget of ₹XX lakhs..." required name="cmsg" maxlength="400"></textarea>
             </div>
-            <div class="g-recaptcha" data-sitekey="6LczujQnAAAAAB9G-zqMP720tpZSQEYxsYSBs0XA" style="margin-bottom:20px;transform:scale(0.92);transform-origin:0 0;"></div>
+            <!-- reCAPTCHA removed for static deployment; form submissions are not sent from static site -->
             <button type="submit" class="btn-submit">
               <i class="fa fa-paper-plane"></i> Send Message
             </button>
@@ -1187,8 +1187,8 @@ footer{background:var(--navy);padding:64px 60px 28px;}
 
 <!-- ─── SCRIPTS ─── -->
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="static/js/nivo-lightbox.js"></script>
+<script src="/static/js/jquery.1.11.1.js"></script>
+<script type="text/javascript" src="/static/js/nivo-lightbox.js"></script>
 <script>
 // LOADER
 window.addEventListener('load',function(){
@@ -1239,9 +1239,14 @@ document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(function(el){io.observe(el)
 
 // RECAPTCHA
 function validateForm(){
-  if(typeof grecaptcha==='undefined'||grecaptcha.getResponse().length===0){
-    alert('Please complete the reCAPTCHA.');return false;
+  // reCAPTCHA is not enabled on this static page. Prevent submission and advise contact options.
+  if(typeof grecaptcha==='undefined' || typeof grecaptcha.getResponse!=='function'){
+    alert('reCAPTCHA is not available — this is a static site and messages are not sent. Please contact via email or phone.');
+    return false;
   }
+  try{
+    if(grecaptcha.getResponse().length===0){alert('Please complete the reCAPTCHA.');return false;}
+  }catch(e){return false;}
   return true;
 }
 </script>
